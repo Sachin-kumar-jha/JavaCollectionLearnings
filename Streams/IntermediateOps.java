@@ -46,5 +46,32 @@ System.out.println(Stream.iterate(1,x->x+1).limit(10).toList());
 //6. skip(n)- skips the first n elements of the stream
 
 System.out.println(Stream.iterate(1,x->x+1).skip(5).limit(10).toList());
+
+//7.peek
+Stream.iterate(1, x->x+1).skip(10).limit(100).peek(System.out::println).count();
+
+// 8. flatMap
+// Handle streams of collection,lists,or arrays where each element is iteself a collection
+// flatten nested structures (e.g.,lists within lists) so that they can be processed as a single sequence of elements
+// Transform and flatten elements at the same time .
+
+List<List<String>> listOfList = Arrays.asList(
+    Arrays.asList("apple","banana"),
+    Arrays.asList("orange","kiwi"),
+    Arrays.asList("pear","grape")
+);
+
+   System.out.println(listOfList.stream().flatMap(x->x.stream()).map(String::toUpperCase).toList());
+
+List<String> sentences = Arrays.asList(
+    "Hello world",
+    "Java streams are powerful",
+    "flatMap is useful"
+);
+
+System.out.println(sentences.stream().flatMap(sentence -> Arrays.stream(sentence.split(" "))).map(String::toUpperCase).toList());
+
+
+
     }
 }

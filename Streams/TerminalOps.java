@@ -39,6 +39,29 @@ public class TerminalOps {
      //Example : Squaring and Sorting Numbers
         List<Integer>numbers = Arrays.asList(5,3,8,1,2);
 
-        System.out.println(numbers.stream().map(x->x*x).sorted().toList());
+        System.out.println(numbers.stream().map(x->x*x).sorted().toList()); 
+
+    //Example : Counting Occurences of a Character
+    String sentence = "Hello World" ;
+    System.out.println(sentence.chars().filter(x->x=='l').count()); 
+    
+    
+    //Statefull & statless operations
+    List<Integer> nums = Arrays.asList(1,2,3,4,5,6,7,8,9,10);
+    //Stateless operation
+    nums.stream().map(x->x*x).forEach(System.out::println);
+    System.out.println("-----");
+    //Statefull operation
+    nums.stream().sorted(Comparator.reverseOrder()).forEach(System.out::println);
+
+    //toArray()
+   Object[] array = Stream.of(1,2,3).toArray();
+
+    //forEachOrdered
+    List<Integer> numbered = Arrays.asList(1,2,3,4,5,6,7);
+    System.out.println("using forEach with parrallel stream");
+    numbers.parallelStream().forEach(System.out::println);
+    numbers.parallelStream().forEachOrdered(System.out::println);
+    
     }
 }
